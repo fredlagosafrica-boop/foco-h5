@@ -35,7 +35,7 @@ function renderHome() {
       <div class="content">
         <div class="banner">
           <h2>📚 FOCO 备考</h2>
-          <p>IIQE 保险中介资格 · 极简题库</p>
+          <p>保险从业资格考试 · 章节练习 · 模拟考试</p>
         </div>
 
         <div class="stats-row">
@@ -73,6 +73,13 @@ function renderHome() {
             <tr><td style="color:var(--text-secondary)">合格分数</td><td>约70%（卷一53题/卷三35题）</td></tr>
             <tr><td style="color:var(--text-secondary)">题型</td><td>单选题（4选1）</td></tr>
           </table>
+        </div>
+
+        <div class="section-title mt-20">📖 卷一章节（风险及保险）</div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow);font-size:13px;color:var(--text-secondary);line-height:1.8">
+          ① 风险及保险 &nbsp;② 法律原则 &nbsp;③ 保险原则<br>
+          ④ 保险公司的主要功能 &nbsp;⑤ 香港保险业的结构<br>
+          ⑥ 保险业的规管架构 &nbsp;⑦ 职业道德及其他有关问题
         </div>
       </div>
     </div>

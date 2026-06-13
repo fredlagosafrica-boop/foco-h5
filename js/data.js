@@ -6,11 +6,11 @@ const FOCO_DATA = {
   exams: [
     {
       id: 'iique',
-      name: 'IIQE 保险中介资格',
+      name: 'FOCO 备考',
       shortName: 'IIQE',
-      cover: '📋',
+      cover: '📚',
       color: '#1a5fb4',
-      description: '保险原理及实务 · 长期保险',
+      description: '保险从业资格考试 · 章节练习 · 模拟考试',
       chapters: []
     }
   ]
@@ -30,7 +30,7 @@ const PAPER1 = {
   chapters: [
     {
       id: 'p1-ch1',
-      name: '风险与保险基础',
+      name: '风险及保险',
       weight: '15%',
       targetQuestions: 12,
       questions: [
@@ -118,7 +118,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch2',
-      name: '保险合同法律',
+      name: '法律原则',
       weight: '15%',
       targetQuestions: 12,
       questions: [
@@ -206,7 +206,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch3',
-      name: '保险市场与中介',
+      name: '保险原则',
       weight: '10%',
       targetQuestions: 8,
       questions: [
@@ -278,7 +278,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch4',
-      name: '保险实务',
+      name: '保险公司的主要功能',
       weight: '20%',
       targetQuestions: 15,
       questions: [
@@ -406,7 +406,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch5',
-      name: '一般保险基础',
+      name: '香港保险业的结构',
       weight: '15%',
       targetQuestions: 12,
       questions: [
@@ -510,7 +510,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch6',
-      name: '长期保险基础',
+      name: '保险业的规管架构',
       weight: '15%',
       targetQuestions: 12,
       questions: [
@@ -614,7 +614,7 @@ const PAPER1 = {
     },
     {
       id: 'p1-ch7',
-      name: '强积金 MPF',
+      name: '职业道德及其他有关问题',
       weight: '10%',
       targetQuestions: 8,
       questions: [
