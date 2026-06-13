@@ -121,86 +121,38 @@ const PAPER1 = {
       name: '法律原则',
       weight: '15%',
       targetQuestions: 12,
-      questions: [
+questions: [
         {
           id: 'p1-ch2-1', type: 'single',
-          content: '保险合同的基本要素不包括？',
-          options: ['A. 要约与承诺', 'B. 对价', 'C. 赌博筹码', 'D. 合法行为能力'],
-          answer: 'C',
-          analysis: '保险合同是民事合同的一种，其有效要件包括：要约与承诺、对价、合法行为能力。赌博筹码不是合同要素。',
+          content: '合約可以定義為：',
+          options: ['(a) 具有法律效力的協議；', '(b) 兩人或多人之間的承諾；', '(c) 書面協議；', '(d) 兩方或多方之間的任何協議。'],
+          answer: 'A',
+          analysis: '合約（Contract）是指具有法律約束力的協議，雙方或多方的權利義務受法律強制執行。「具有法律效力」是合約區別於一般承諾的關鍵要素。',
           difficulty: 1
         },
         {
           id: 'p1-ch2-2', type: 'single',
-          content: '保险合同区别于普通合同的主要特点是？',
-          options: ['A. 无需承诺', 'B. 射幸性', 'C. 可以口头形式', 'D. 无需书面'],
-          answer: 'B',
-          analysis: '保险合同是典型的射幸合同（Aleatory Contract），其效力取决于保险事故是否发生，具有很大的偶然性。这是保险合同与普通等价交换合同的根本区别。',
-          difficulty: 1
+          content: '委託人追認其代理人的行為意味着：',
+          options: ['(a) 有關的代理協定的終結；', '(b) 該代理人將無權取得任何佣金；', '(c) 該委託人以「追溯」形式授權有關行為；', '(d) 該委託人拒絕為代理人的行為負上責任。'],
+          answer: 'C',
+          analysis: '委託人追認（Ratification）代理人的行為，意味着委託人承認並接受該行為，將其效力追溯至行為發生時，相當於以「追溯」方式授權該行為。',
+          difficulty: 2
         },
         {
           id: 'p1-ch2-3', type: 'single',
-          content: '一份完整保单的构成部分不包括？',
-          options: ['A. 声明页', 'B. 承保条款', 'C. 除外责任', 'D. 投资收益条款'],
+          content: '以下哪兩項有關簡單合約的陳述是正確的？\n(i) 它們絕對不能是書面的。\n(ii) 它們不是經蓋章後發出。\n(iii) 在任何情況下它們必須是書面的。\n(iv) 它們可以是口頭的，也可以是書面的。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (ii)及(iv)而已。'],
           answer: 'D',
-          analysis: '标准保单通常由声明页（Declarations）、承保条款（Insuring Clause）、除外责任（Exclusions）、条件条款（Conditions）和批注（Endorsements）组成。投资收益条款不是保单必需组成部分。',
+          analysis: '簡單合約（Simple Contract）不要求書面形式，可以是口頭或書面。它們不需要蓋章（不同於契據 Deeds）。(ii)和(iv)是正確的。',
           difficulty: 2
         },
         {
-          id: 'p1-ch2-4', type: 'judge',
-          content: '保险合同中可以约定"除外责任"条款，明确保险公司不承担赔偿责任的情形。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '除外责任（Exclusions）是保单的重要组成部分，明确列出保险公司不承担赔偿责任的情形，如战争、自杀、故意行为等。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch2-5', type: 'single',
-          content: '保险合同解除与终止的主要区别是？',
-          options: ['A. 解除可溯及既往，终止不溯及', 'B. 两者无区别', 'C. 终止可溯及既往，解除不溯及', 'D. 解除仅适用于财险'],
-          answer: 'A',
-          analysis: '合同解除（Rescission）是指使合同自始无效，通常溯及既往；合同终止（Termination）是指合同从某一时刻起不再继续效力，不溯及既往。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch2-6', type: 'single',
-          content: '保单复效（Reinstatement）的条件一般不包括？',
-          options: ['A. 被保险人身体健康', 'B. 缴清欠缴保费及利息', 'C. 保险公司同意', 'D. 投保人无需提出申请'],
+          id: 'p1-ch2-4', type: 'single',
+          content: '以下哪些是構成有效簡單合約的元素？\n(i) 要約。\n(ii) 承約。\n(iii) 代價。\n(iv) 訂約的行為能力。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
           answer: 'D',
-          analysis: '保单复效是指失效保单恢复效力，通常需要满足：投保人提出申请、缴清欠缴保费及利息、被保险人符合可保条件、保险公司审核同意等条件。',
+          analysis: '構成有效合約的四個基本要素：要約（Offer）、承約（Acceptance）、代價（Consideration）及訂約行為能力（Capacity）。四者缺一不可。',
           difficulty: 2
-        },
-        {
-          id: 'p1-ch2-7', type: 'judge',
-          content: '保险合同是附和合同（Contract of Adhesion），即保险条款由保险公司预先拟定，投保人只能整体接受或拒绝。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '保险合同是典型的附和合同，条款由保险公司单方拟定，投保人处于"接受或拒绝"的选择地位。这导致对条款解释有疑义时，通常作有利于被保险人的解释（Contra Preferentem）。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch2-8', type: 'single',
-          content: '以下哪种情况可能导致保险合同失效？',
-          options: ['A. 保费按时缴纳', 'B. 保险标的灭失', 'C. 受益人变更', 'D. 投保人搬迁'],
-          answer: 'B',
-          analysis: '当保险标的全部灭失（Total Loss）时，保险合同失去承保对象，通常导致合同失效。保费缴纳、受益人变更、投保人搬迁一般不影响合同效力。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch2-9', type: 'single',
-          content: '保险合同中的"条件"条款主要规定的是？',
-          options: ['A. 承保范围', 'B. 投保人和保险公司的权利义务', 'C. 理赔金额', 'D. 投资收益'],
-          answer: 'B',
-          analysis: '保单条件（Conditions）是保单中规定投保人和保险公司各自权利义务的条款，如通知义务、损失减少义务、理赔配合义务等。违反条件可能导致保险公司拒绝赔付。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch2-10', type: 'single',
-          content: '批注（Endorsement）对保单的作用是？',
-          options: ['A. 仅用于美观', 'B. 修改或增加保单条款', 'C. 仅在财险中使用', 'D. 取消保单'],
-          answer: 'B',
-          analysis: '批注（Endorsement）是保单签发后，经双方同意对原保单条款进行修改、补充或删除的文件，具有与保单正文同等的法律效力。',
-          difficulty: 1
         }
       ]
     },
@@ -281,37 +233,125 @@ const PAPER1 = {
       name: '保险公司的主要功能',
       weight: '20%',
       targetQuestions: 15,
-questions: [
+      questions: [
         {
           id: 'p1-ch4-1', type: 'single',
-          content: '對於保險人，產品的開發：',
-          options: ['(a) 是一種延續不斷的過程；', '(b) 對大型保險人來說是沒有必要的；', '(c) 對強制性的業務來說是沒有必要的；', '(d) 在敲定了保單的用字後便不再需要。'],
-          answer: 'A',
-          analysis: '保險產品開發是持續進行的過程，需要根據市場變化、監管要求、客戶需求不斷更新和優化，並非一次性工作。',
+          content: '投保流程的第一步一般是？',
+          options: ['A. 签发保单', 'B. 填写投保申请书', 'C. 缴纳保费', 'D. 体检'],
+          answer: 'B',
+          analysis: '投保流程通常第一步是填写投保申请书（Proposal Form），如实告知个人信息和健康状况，保险公司据此进行核保评估。',
           difficulty: 1
         },
         {
           id: 'p1-ch4-2', type: 'single',
-          content: '對於保險公司的運作來說，核保可解作：',
-          options: ['(a) 銷售活動；', '(b) 對任何未能出售的股票承擔責任；', '(c) 作為保險目的而進行的風險評估；', '(d) 保單和其他合約文件的實際簽署。'],
-          answer: 'C',
-          analysis: '核保（Underwriting）是保險公司評估風險、決定是否接受承保及以何種條件承保的過程，即作為保險目的而進行的風險評估。',
+          content: '核保（Underwriting）的主要目的是？',
+          options: ['A. 加快理赔速度', 'B. 评估风险、决定是否承保及保费高低', 'C. 推销更多产品', 'D. 降低保险公司成本'],
+          answer: 'B',
+          analysis: '核保是保险公司评估投保标的的风险程度，决定是否接受承保、以何种条件承保（标准体、次标准体或拒保）以及厘定适当保费的过程。',
           difficulty: 1
         },
         {
           id: 'p1-ch4-3', type: 'single',
-          content: '以下哪些可能對人壽保險理賠造成一定的影響？\n(i) 還未清償的保單貸款。\n(ii) 與受益人有關的複雜事項。\n(iii) 保單轉讓給第三者的可能性。\n(iv) 對死者死亡的真確性或其身份存在不確定因素。',
-          options: ['(a) (i)及(ii)而已；', '(b) (ii)及(iii)而已；', '(c) (i)、(iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
-          answer: 'D',
-          analysis: '人壽保險理賠可能受多種因素影響：(i)未清償保單貸款會從保險金中扣除；(ii)受益人複雜事項影響給付對象；(iii)保單轉讓影響權益歸屬；(iv)死亡真確性是理賠前提。四者全部可能影響理賠。',
+          content: '保费计算的基础是？',
+          options: ['A. 投保人喜好', 'B. 保险标的的预期损失率', 'C. 市场竞争', 'D. 保险公司规模'],
+          answer: 'B',
+          analysis: '保费计算基于大数法则，参考保险标的的历史损失数据和预期损失率，加上附加费用和合理利润，形成保费水平。',
           difficulty: 2
         },
         {
-          id: 'p1-ch4-4', type: 'single',
-          content: '以下哪兩項不大可能是保險公司會計部的職責？\n(i) 替還未清償的賬單付款。\n(ii) 追收欠交的保費。\n(iii) 釐定各項風險是否可保。\n(iv) 安排推出新的保單產品。',
-          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (iii)及(iv)而已。'],
-          answer: 'D',
-          analysis: '核保（釐定風險是否可保）和產品開發（安排推出新保單產品）是核保部門和產品開發部門的職責，不屬於會計部職責。(iii)和(iv)是正確答案。',
+          id: 'p1-ch4-4', type: 'judge',
+          content: '现金价值（Cash Value）是投保人解除保单时可获得的退保价值。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '现金价值（Cancellation Value）是长期人身保险中，投保人按时缴纳保费并经过一定时期后，保单累积的解约退还金。现金价值通常低于已缴保费总额。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-5', type: 'single',
+          content: '理赔流程的第一步是？',
+          options: ['A. 支付赔款', 'B. 报案并提出索赔申请', 'C. 调查保险事故', 'D. 起诉第三方'],
+          answer: 'B',
+          analysis: '理赔流程第一步是出险后及时向保险公司报案并提出正式的索赔申请（Notification + Claim Application），这是启动理赔程序的前提。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-6', type: 'single',
+          content: '保险公司拒绝赔付的常见理由不包括？',
+          options: ['A. 未如实告知', 'B. 属于除外责任', 'C. 保费已按时缴纳', 'D. 损失不属于承保范围'],
+          answer: 'C',
+          analysis: '常见拒赔理由包括：违反如实告知义务、损失属于除外责任、不属于承保范围、保单已失效等。保费按时缴纳是保险公司应履行赔付义务的前提，不是拒赔理由。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-7', type: 'single',
+          content: '保单变更中，变更受益人需要？',
+          options: ['A. 保险公司同意', 'B. 被保险人同意', 'C. 只需投保人通知', 'D. 不允许变更'],
+          answer: 'B',
+          analysis: '受益人变更涉及被保险人的利益，通常需要被保险人同意（除非被保险人即是投保人），并书面通知保险公司完成批注手续。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch4-8', type: 'single',
+          content: '宽限期（Grace Period）一般是多少天？',
+          options: ['A. 10天', 'B. 30天', 'C. 60天', 'D. 90天'],
+          answer: 'B',
+          analysis: '宽限期（Grace Period）是指保费到期后，保险公司给予投保人补缴保费而不致保单立即失效的期限，通常为30天（长期寿险标准宽限期）。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-9', type: 'judge',
+          content: '退保（ lapsation）是指投保人中途解除保险合同的行为。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '退保（Lapsation）是指在保险合同有效期内，投保人申请解除合同的行为。长期险退保可获得现金价值；财险退保按短期费率计算退还保费。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-10', type: 'single',
+          content: '投保建议书（Illustration）的主要作用是？',
+          options: ['A. 作为正式合同', 'B. 说明保险产品特点、演示利益', 'C. 确定保费', 'D. 代替核保'],
+          answer: 'B',
+          analysis: '投保建议书（Illustration）是向潜在客户解释保险产品特点、演示保险利益、说明保费和保障范围的文件，帮助客户理解产品，非正式合同文件。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-11', type: 'single',
+          content: '保险公估行（Loss Adjuster）的作用是？',
+          options: ['A. 承保保险业务', 'B. 评估损失程度和金额', 'C. 销售保险产品', 'D. 制定保险费率'],
+          answer: 'B',
+          analysis: '保险公估行（Loss Adjuster/Assessor）是独立的专业机构，受保险公司或被保险人委托，对保险事故损失进行评估、勘察和确定损失金额。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch4-12', type: 'single',
+          content: '保费缴付方式一般不包括？',
+          options: ['A. 年缴', 'B. 半年缴', 'C. 按股票盈利缴付', 'D. 月缴'],
+          answer: 'C',
+          analysis: '保费缴付方式通常有年缴、半年缴、季缴、月缴等。按股票盈利缴付不是正规的保费缴付方式。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-13', type: 'judge',
+          content: '保险事故发生后，被保险人有义务采取合理措施减少损失。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '保险合同中通常有"损失减少义务"条款，要求被保险人在保险事故发生后采取合理措施减少损失，否则保险公司对扩大部分不承担赔偿责任。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-14', type: 'single',
+          content: '保单签发后，投保人一般有多少天可申请撤单？',
+          options: ['A. 7天', 'B. 14天', 'C. 21天', 'D. 30天'],
+          answer: 'B',
+          analysis: '香港保险业监管局规定，投保人收到保单后一般有14天（冷静期/Cooling-off Period）的考虑期，在此期间可申请撤单并获得全额退还保费。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch4-15', type: 'single',
+          content: '保险理赔中的"比例赔付"一般适用于？',
+          options: ['A. 足额保险', 'B. 不足额保险或超额保险', 'C. 定值保险', 'D. 人寿保险'],
+          answer: 'B',
+          analysis: '比例赔付（Pro-rata）通常适用于不足额保险（保额低于实际价值）或超额保险（保额超过实际价值）的情况，按保险金额与实际价值的比例计算赔付。',
           difficulty: 2
         }
       ]
@@ -1075,6 +1115,128 @@ FOCO_DATA.exams[0].chapters = [
     color: '#9141ac',
     paperType: 'paper3',
     children: PAPER3.chapters
+  },
+  {
+    id: 'hksi',
+    name: 'HKSI 证券及期货从业员资格',
+    subtitle: '香港证券及期货从业员资格考试',
+    desc: '随机练习 · 模拟考试',
+    color: '#26a269',
+    children: [
+      {
+        id: 'hksi-1',
+        name: '证券法规基础',
+        weight: '30%',
+        targetQuestions: 10,
+        questions: [
+          {
+            id: 'hksi-1-1', type: 'single',
+            content: '《证券及期货条例》（SFO）监管以下哪些活动？',
+            options: ['(a) 房地产交易；', '(b) 证券及期货合约交易；', '(c) 银行贷款；', '(d) 保险业务。'],
+            answer: 'B',
+            analysis: '《证券及期货条例》是香港证券及期货市场的主要法例，监管证券、期货、杠杆外汇等受规管活动。',
+            difficulty: 1
+          },
+          {
+            id: 'hksi-1-2', type: 'single',
+            content: '香港证监会（SFC）的职能不包括？',
+            options: ['(a) 监管交易所和结算所；', '(b) 发牌和监管中介人；', '(c) 直接参与证券交易；', '(d) 执法和调查。'],
+            answer: 'C',
+            analysis: '证监会是监管机构，不会直接参与交易。其职能包括监管市场参与者、制定规则、执法等。',
+            difficulty: 2
+          },
+          {
+            id: 'hksi-1-3', type: 'judge',
+            content: '在香港从事受规管活动必须持有香港证监会发出的牌照。',
+            options: ['正确', '错误'],
+            answer: '正确',
+            analysis: '根据《证券及期货条例》，从事任何受规管活动必须向证监会申请牌照并获批准。',
+            difficulty: 1
+          },
+          {
+            id: 'hksi-1-4', type: 'single',
+            content: '以下哪种属于「证券」的定义范围？',
+            options: ['(a) 银行存款证明；', '(b) 股票和债券；', '(c) 房产证；', '(d) 汽车登记证。'],
+            answer: 'B',
+            analysis: '根据《证券及期货条例》，证券包括股票、债券、基金单位、衍生工具等。',
+            difficulty: 1
+          }
+        ]
+      },
+      {
+        id: 'hksi-2',
+        name: '市场运作机制',
+        weight: '25%',
+        targetQuestions: 8,
+        questions: [
+          {
+            id: 'hksi-2-1', type: 'single',
+            content: '香港交易所（HKEX）的主要产品包括？',
+            options: ['(a) 银行存款；', '(b) 股票、债券、衍生产品；', '(c) 房地产投资信托；', '(d) B和C都是。'],
+            answer: 'D',
+            analysis: '港交所提供多元化产品包括股票、债券、ETF、期货、期权、房地产投资信托等。',
+            difficulty: 1
+          },
+          {
+            id: 'hksi-2-2', type: 'single',
+            content: '什么叫「对冲」？',
+            options: ['(a) 投机性买卖；', '(b) 用相关资产抵消潜在损失；', '(c) 长期持有不卖；', '(d) 高频交易。'],
+            answer: 'B',
+            analysis: '对冲是一种风险管理策略，通过建立与原有持仓相反的头寸来抵消潜在损失。',
+            difficulty: 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'cams',
+    name: 'CAMS 反洗钱专家资格',
+    subtitle: '国际公认反洗钱师认证考试',
+    desc: '随机练习 · 模拟考试',
+    color: '#c64600',
+    children: [
+      {
+        id: 'cams-1',
+        name: '反洗钱基础知识',
+        weight: '30%',
+        targetQuestions: 10,
+        questions: [
+          {
+            id: 'cams-1-1', type: 'single',
+            content: '洗钱过程的三个阶段是？',
+            options: ['(a) 存入、转移、提取；', '(b) Placement、Layering、Integration；', '(c) 接收、保管、转交；', '(d) 申报、审核、放行。'],
+            answer: 'B',
+            analysis: '洗钱的三个经典阶段：Placement（入账）、Layering（分层）、Integration（整合）。这是ACAMS官方定义的洗钱流程。',
+            difficulty: 1
+          },
+          {
+            id: 'cams-1-2', type: 'single',
+            content: 'FATF（金融行动特别工作组）的主要职责是？',
+            options: ['(a) 发行货币；', '(b) 制定国际反洗钱标准；', '(c) 监管银行利率；', '(d) 提供贷款担保。'],
+            answer: 'B',
+            analysis: 'FATF是G7建立的国际组织，负责制定反洗钱/反恐怖融资的国际标准，并推动各国执行。',
+            difficulty: 2
+          },
+          {
+            id: 'cams-1-3', type: 'judge',
+            content: '客户尽职调查（CDD）是反洗钱合规的核心环节。',
+            options: ['正确', '错误'],
+            answer: '正确',
+            analysis: '客户尽职调查是识别和验证客户身份、了解客户交易目的的核心程序，是反洗钱的基础。',
+            difficulty: 1
+          },
+          {
+            id: 'cams-1-4', type: 'single',
+            content: '以下哪种情况需要提交可疑交易报告（STR）？',
+            options: ['(a) 客户正常存款1万港元；', '(b) 客户频繁进行大额现金交易且无法解释；', '(c) 客户开通网上银行；', '(d) 客户更改联系电话。'],
+            answer: 'B',
+            analysis: '当交易符合可疑交易特征（如频繁大额现金、无法解释的交易目的）时，机构有法律义务提交可疑交易报告。',
+            difficulty: 2
+          }
+        ]
+      }
+    ]
   }
 ];
 
