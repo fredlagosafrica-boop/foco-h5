@@ -121,38 +121,86 @@ const PAPER1 = {
       name: '法律原则',
       weight: '15%',
       targetQuestions: 12,
-questions: [
+      questions: [
         {
           id: 'p1-ch2-1', type: 'single',
-          content: '合約可以定義為：',
-          options: ['(a) 具有法律效力的協議；', '(b) 兩人或多人之間的承諾；', '(c) 書面協議；', '(d) 兩方或多方之間的任何協議。'],
-          answer: 'A',
-          analysis: '合約（Contract）是指具有法律約束力的協議，雙方或多方的權利義務受法律強制執行。「具有法律效力」是合約區別於一般承諾的關鍵要素。',
+          content: '保险合同的基本要素不包括？',
+          options: ['A. 要约与承诺', 'B. 对价', 'C. 赌博筹码', 'D. 合法行为能力'],
+          answer: 'C',
+          analysis: '保险合同是民事合同的一种，其有效要件包括：要约与承诺、对价、合法行为能力。赌博筹码不是合同要素。',
           difficulty: 1
         },
         {
           id: 'p1-ch2-2', type: 'single',
-          content: '委託人追認其代理人的行為意味着：',
-          options: ['(a) 有關的代理協定的終結；', '(b) 該代理人將無權取得任何佣金；', '(c) 該委託人以「追溯」形式授權有關行為；', '(d) 該委託人拒絕為代理人的行為負上責任。'],
-          answer: 'C',
-          analysis: '委託人追認（Ratification）代理人的行為，意味着委託人承認並接受該行為，將其效力追溯至行為發生時，相當於以「追溯」方式授權該行為。',
-          difficulty: 2
+          content: '保险合同区别于普通合同的主要特点是？',
+          options: ['A. 无需承诺', 'B. 射幸性', 'C. 可以口头形式', 'D. 无需书面'],
+          answer: 'B',
+          analysis: '保险合同是典型的射幸合同（Aleatory Contract），其效力取决于保险事故是否发生，具有很大的偶然性。这是保险合同与普通等价交换合同的根本区别。',
+          difficulty: 1
         },
         {
           id: 'p1-ch2-3', type: 'single',
-          content: '以下哪兩項有關簡單合約的陳述是正確的？\n(i) 它們絕對不能是書面的。\n(ii) 它們不是經蓋章後發出。\n(iii) 在任何情況下它們必須是書面的。\n(iv) 它們可以是口頭的，也可以是書面的。',
-          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (ii)及(iv)而已。'],
+          content: '一份完整保单的构成部分不包括？',
+          options: ['A. 声明页', 'B. 承保条款', 'C. 除外责任', 'D. 投资收益条款'],
           answer: 'D',
-          analysis: '簡單合約（Simple Contract）不要求書面形式，可以是口頭或書面。它們不需要蓋章（不同於契據 Deeds）。(ii)和(iv)是正確的。',
+          analysis: '标准保单通常由声明页（Declarations）、承保条款（Insuring Clause）、除外责任（Exclusions）、条件条款（Conditions）和批注（Endorsements）组成。投资收益条款不是保单必需组成部分。',
           difficulty: 2
         },
         {
-          id: 'p1-ch2-4', type: 'single',
-          content: '以下哪些是構成有效簡單合約的元素？\n(i) 要約。\n(ii) 承約。\n(iii) 代價。\n(iv) 訂約的行為能力。',
-          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
-          answer: 'D',
-          analysis: '構成有效合約的四個基本要素：要約（Offer）、承約（Acceptance）、代價（Consideration）及訂約行為能力（Capacity）。四者缺一不可。',
+          id: 'p1-ch2-4', type: 'judge',
+          content: '保险合同中可以约定"除外责任"条款，明确保险公司不承担赔偿责任的情形。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '除外责任（Exclusions）是保单的重要组成部分，明确列出保险公司不承担赔偿责任的情形，如战争、自杀、故意行为等。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch2-5', type: 'single',
+          content: '保险合同解除与终止的主要区别是？',
+          options: ['A. 解除可溯及既往，终止不溯及', 'B. 两者无区别', 'C. 终止可溯及既往，解除不溯及', 'D. 解除仅适用于财险'],
+          answer: 'A',
+          analysis: '合同解除（Rescission）是指使合同自始无效，通常溯及既往；合同终止（Termination）是指合同从某一时刻起不再继续效力，不溯及既往。',
           difficulty: 2
+        },
+        {
+          id: 'p1-ch2-6', type: 'single',
+          content: '保单复效（Reinstatement）的条件一般不包括？',
+          options: ['A. 被保险人身体健康', 'B. 缴清欠缴保费及利息', 'C. 保险公司同意', 'D. 投保人无需提出申请'],
+          answer: 'D',
+          analysis: '保单复效是指失效保单恢复效力，通常需要满足：投保人提出申请、缴清欠缴保费及利息、被保险人符合可保条件、保险公司审核同意等条件。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch2-7', type: 'judge',
+          content: '保险合同是附和合同（Contract of Adhesion），即保险条款由保险公司预先拟定，投保人只能整体接受或拒绝。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '保险合同是典型的附和合同，条款由保险公司单方拟定，投保人处于"接受或拒绝"的选择地位。这导致对条款解释有疑义时，通常作有利于被保险人的解释（Contra Preferentem）。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch2-8', type: 'single',
+          content: '以下哪种情况可能导致保险合同失效？',
+          options: ['A. 保费按时缴纳', 'B. 保险标的灭失', 'C. 受益人变更', 'D. 投保人搬迁'],
+          answer: 'B',
+          analysis: '当保险标的全部灭失（Total Loss）时，保险合同失去承保对象，通常导致合同失效。保费缴纳、受益人变更、投保人搬迁一般不影响合同效力。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch2-9', type: 'single',
+          content: '保险合同中的"条件"条款主要规定的是？',
+          options: ['A. 承保范围', 'B. 投保人和保险公司的权利义务', 'C. 理赔金额', 'D. 投资收益'],
+          answer: 'B',
+          analysis: '保单条件（Conditions）是保单中规定投保人和保险公司各自权利义务的条款，如通知义务、损失减少义务、理赔配合义务等。违反条件可能导致保险公司拒绝赔付。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch2-10', type: 'single',
+          content: '批注（Endorsement）对保单的作用是？',
+          options: ['A. 仅用于美观', 'B. 修改或增加保单条款', 'C. 仅在财险中使用', 'D. 取消保单'],
+          answer: 'B',
+          analysis: '批注（Endorsement）是保单签发后，经双方同意对原保单条款进行修改、补充或删除的文件，具有与保单正文同等的法律效力。',
+          difficulty: 1
         }
       ]
     },
@@ -161,70 +209,38 @@ questions: [
       name: '保险原则',
       weight: '10%',
       targetQuestions: 8,
-      questions: [
+questions: [
         {
           id: 'p1-ch3-1', type: 'single',
-          content: '香港保险业监管局（IA）的职能是？',
-          options: ['A. 制定货币政策', 'B. 监管保险公司和保险中介人', 'C. 直接承保保险业务', 'D. 提供银行贷款'],
-          answer: 'B',
-          analysis: '保险业监管局（Insurer Authority，IA）是香港保险业的独立监管机构，负责监管保险公司和保险中介人的活动，确保市场稳健运作。',
+          content: '可保權益可以描述為：',
+          options: ['(a) 對某些貨品的管有權；', '(b) 受損失發生後須賠付的那個固定金額；', '(c) 一種對標的的法律認可關係；', '(d) 因延誤支付保費而產生的利息。'],
+          answer: 'C',
+          analysis: '可保權益（Insurable Interest）是指對保險標的具有法律認可的利害關係，即當標的發生損失時，被保險人將因此受到法律承認的經濟損失。',
           difficulty: 1
         },
         {
           id: 'p1-ch3-2', type: 'single',
-          content: '香港保险中介人主要分为？',
-          options: ['A. 代理人和经纪人', 'B. 银行和券商', 'C. 个人和法人', 'D. 国内和国外'],
+          content: '就海上保險而言，何時需要可保權益？',
+          options: ['(a) 肯定是在損失發生時；', '(b) 只在保單剛辦妥時；', '(c) 只在支付首次保費時；', '(d) 只限於保單有明確規定的情況。'],
           answer: 'A',
-          analysis: '香港保险中介人主要分为两大类：保险代理人（Insurance Agent，代表保险公司）和保险经纪人（Insurance Broker，代表客户）。',
+          analysis: '海上保險的可保權益需要在損失發生時存在，這是海上保險的特殊要求，區別於一般保險可在投保時即存在可保權益。',
           difficulty: 1
         },
         {
-          id: 'p1-ch3-3', type: 'judge',
-          content: '在香港，保险中介人必须持有有效牌照才能从事保险销售业务。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '根据《保险业条例》（Insurance Ordinance），在香港从事保险中介业务必须持有香港保险业监管局颁发的有效牌照，并遵守相关操守准则。',
-          difficulty: 1
+          id: 'p1-ch3-3', type: 'single',
+          content: '以下哪些屬於違反最高誠信原則的類別？\n(i) 欺詐性不披露。\n(ii) 非欺詐性不披露。\n(iii) 非欺詐性失實陳述。\n(iv) 欺詐性失實陳述。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)、(iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
+          answer: 'D',
+          analysis: '違反最高誠信原則（Utmost Good Faith）的類別包括：(i)欺詐性不披露、(ii)非欺詐性不披露、(iii)非欺詐性失實陳述、(iv)欺詐性失實陳述，全部四項均可構成對最高誠信原則的違反。',
+          difficulty: 2
         },
         {
           id: 'p1-ch3-4', type: 'single',
-          content: '保险代理人与保险经纪人的核心区别是？',
-          options: ['A. 代理人是个人，经纪人是公司', 'B. 代理人代表保险公司，经纪人代表客户', 'C. 两者无区别', 'D. 代理人无需培训'],
-          answer: 'B',
-          analysis: '保险代理人（Agent）代表保险公司推销保险产品；保险经纪人（Broker）则代表客户，为客户寻找合适的保险产品。两者代表利益不同，这是根本区别。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch3-5', type: 'single',
-          content: '《个人资料（私隐）条例》对保险中介人的要求是？',
-          options: ['A. 禁止收集客户资料', 'B. 必须妥善保护客户个人资料', 'C. 可自由使用客户资料', 'D. 仅适用于电子资料'],
-          answer: 'B',
-          analysis: '保险中介人在业务中收集大量客户个人资料，必须遵守《个人资料（私隐）条例》，妥善保护客户资料，不得未经授权使用或披露。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch3-6', type: 'single',
-          content: '保险中介人操守准则（Code of Conduct）主要规范的是？',
-          options: ['A. 投资建议', 'B. 中介人的专业行为和道德标准', 'C. 产品定价', 'D. 税收申报'],
-          answer: 'B',
-          analysis: '保险中介人操守准则由香港保险业监管局制定，主要规范中介人的专业行为、道德标准、合规要求，确保为客户提供专业、诚信的服务。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch3-7', type: 'judge',
-          content: '保险经纪必须为客户购买保险时，必须以最优惠的条件为客户寻找最适合的产品。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '保险经纪的职责是代表客户，在市场上为客户寻找最适合的保险产品，并以最优惠的条件为客户争取。这是经纪人与代理人的重要区别。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch3-8', type: 'single',
-          content: '香港保险业监管局对保险中介人的违规行为可采取的处分不包括？',
-          options: ['A. 纪律处分', 'B. 罚款', 'C. 撤销牌照', 'D. 刑事起诉'],
-          answer: 'D',
-          analysis: 'IA可对违规中介人采取的处分包括：纪律处分（斥责、罚款）、暂停牌照、撤销牌照等。严重刑事犯罪会转交执法部门处理。',
-          difficulty: 2
+          content: '以下哪三項保單條文，可以造成實際的賠額超出彌償金額的情況？\n(i) 「以新代舊」的保險保障。\n(ii) 約定價值保單。\n(iii) 重置保險。\n(iv) 比例分攤的條件。',
+          options: ['(a) (i)、(ii)及(iii)而已；', '(b) (i)、(ii)及(iv)而已；', '(c) (i)、(iii)及(iv)而已；', '(d) (ii)、(iii)及(iv)而已。'],
+          answer: 'A',
+          analysis: '「以新代舊」（Reinstatement）、約定價值保單（Agreed Value）和重置保險（Replacement Insurance）均可導致實際賠償額超過實際現金價值/彌償金額，因為這些條款提供的保障高於一般彌償原則的限制。',
+          difficulty: 3
         }
       ]
     },
