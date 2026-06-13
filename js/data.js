@@ -209,38 +209,70 @@ const PAPER1 = {
       name: '保险原则',
       weight: '10%',
       targetQuestions: 8,
-questions: [
+      questions: [
         {
           id: 'p1-ch3-1', type: 'single',
-          content: '可保權益可以描述為：',
-          options: ['(a) 對某些貨品的管有權；', '(b) 受損失發生後須賠付的那個固定金額；', '(c) 一種對標的的法律認可關係；', '(d) 因延誤支付保費而產生的利息。'],
-          answer: 'C',
-          analysis: '可保權益（Insurable Interest）是指對保險標的具有法律認可的利害關係，即當標的發生損失時，被保險人將因此受到法律承認的經濟損失。',
+          content: '香港保险业监管局（IA）的职能是？',
+          options: ['A. 制定货币政策', 'B. 监管保险公司和保险中介人', 'C. 直接承保保险业务', 'D. 提供银行贷款'],
+          answer: 'B',
+          analysis: '保险业监管局（Insurer Authority，IA）是香港保险业的独立监管机构，负责监管保险公司和保险中介人的活动，确保市场稳健运作。',
           difficulty: 1
         },
         {
           id: 'p1-ch3-2', type: 'single',
-          content: '就海上保險而言，何時需要可保權益？',
-          options: ['(a) 肯定是在損失發生時；', '(b) 只在保單剛辦妥時；', '(c) 只在支付首次保費時；', '(d) 只限於保單有明確規定的情況。'],
+          content: '香港保险中介人主要分为？',
+          options: ['A. 代理人和经纪人', 'B. 银行和券商', 'C. 个人和法人', 'D. 国内和国外'],
           answer: 'A',
-          analysis: '海上保險的可保權益需要在損失發生時存在，這是海上保險的特殊要求，區別於一般保險可在投保時即存在可保權益。',
+          analysis: '香港保险中介人主要分为两大类：保险代理人（Insurance Agent，代表保险公司）和保险经纪人（Insurance Broker，代表客户）。',
           difficulty: 1
         },
         {
-          id: 'p1-ch3-3', type: 'single',
-          content: '以下哪些屬於違反最高誠信原則的類別？\n(i) 欺詐性不披露。\n(ii) 非欺詐性不披露。\n(iii) 非欺詐性失實陳述。\n(iv) 欺詐性失實陳述。',
-          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)、(iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
-          answer: 'D',
-          analysis: '違反最高誠信原則（Utmost Good Faith）的類別包括：(i)欺詐性不披露、(ii)非欺詐性不披露、(iii)非欺詐性失實陳述、(iv)欺詐性失實陳述，全部四項均可構成對最高誠信原則的違反。',
-          difficulty: 2
+          id: 'p1-ch3-3', type: 'judge',
+          content: '在香港，保险中介人必须持有有效牌照才能从事保险销售业务。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '根据《保险业条例》（Insurance Ordinance），在香港从事保险中介业务必须持有香港保险业监管局颁发的有效牌照，并遵守相关操守准则。',
+          difficulty: 1
         },
         {
           id: 'p1-ch3-4', type: 'single',
-          content: '以下哪三項保單條文，可以造成實際的賠額超出彌償金額的情況？\n(i) 「以新代舊」的保險保障。\n(ii) 約定價值保單。\n(iii) 重置保險。\n(iv) 比例分攤的條件。',
-          options: ['(a) (i)、(ii)及(iii)而已；', '(b) (i)、(ii)及(iv)而已；', '(c) (i)、(iii)及(iv)而已；', '(d) (ii)、(iii)及(iv)而已。'],
-          answer: 'A',
-          analysis: '「以新代舊」（Reinstatement）、約定價值保單（Agreed Value）和重置保險（Replacement Insurance）均可導致實際賠償額超過實際現金價值/彌償金額，因為這些條款提供的保障高於一般彌償原則的限制。',
-          difficulty: 3
+          content: '保险代理人与保险经纪人的核心区别是？',
+          options: ['A. 代理人是个人，经纪人是公司', 'B. 代理人代表保险公司，经纪人代表客户', 'C. 两者无区别', 'D. 代理人无需培训'],
+          answer: 'B',
+          analysis: '保险代理人（Agent）代表保险公司推销保险产品；保险经纪人（Broker）则代表客户，为客户寻找合适的保险产品。两者代表利益不同，这是根本区别。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch3-5', type: 'single',
+          content: '《个人资料（私隐）条例》对保险中介人的要求是？',
+          options: ['A. 禁止收集客户资料', 'B. 必须妥善保护客户个人资料', 'C. 可自由使用客户资料', 'D. 仅适用于电子资料'],
+          answer: 'B',
+          analysis: '保险中介人在业务中收集大量客户个人资料，必须遵守《个人资料（私隐）条例》，妥善保护客户资料，不得未经授权使用或披露。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch3-6', type: 'single',
+          content: '保险中介人操守准则（Code of Conduct）主要规范的是？',
+          options: ['A. 投资建议', 'B. 中介人的专业行为和道德标准', 'C. 产品定价', 'D. 税收申报'],
+          answer: 'B',
+          analysis: '保险中介人操守准则由香港保险业监管局制定，主要规范中介人的专业行为、道德标准、合规要求，确保为客户提供专业、诚信的服务。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch3-7', type: 'judge',
+          content: '保险经纪必须为客户购买保险时，必须以最优惠的条件为客户寻找最适合的产品。',
+          options: ['正确', '错误'],
+          answer: '正确',
+          analysis: '保险经纪的职责是代表客户，在市场上为客户寻找最适合的保险产品，并以最优惠的条件为客户争取。这是经纪人与代理人的重要区别。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch3-8', type: 'single',
+          content: '香港保险业监管局对保险中介人的违规行为可采取的处分不包括？',
+          options: ['A. 纪律处分', 'B. 罚款', 'C. 撤销牌照', 'D. 刑事起诉'],
+          answer: 'D',
+          analysis: 'IA可对违规中介人采取的处分包括：纪律处分（斥责、罚款）、暂停牌照、撤销牌照等。严重刑事犯罪会转交执法部门处理。',
+          difficulty: 2
         }
       ]
     },
@@ -249,125 +281,37 @@ questions: [
       name: '保险公司的主要功能',
       weight: '20%',
       targetQuestions: 15,
-      questions: [
+questions: [
         {
           id: 'p1-ch4-1', type: 'single',
-          content: '投保流程的第一步一般是？',
-          options: ['A. 签发保单', 'B. 填写投保申请书', 'C. 缴纳保费', 'D. 体检'],
-          answer: 'B',
-          analysis: '投保流程通常第一步是填写投保申请书（Proposal Form），如实告知个人信息和健康状况，保险公司据此进行核保评估。',
+          content: '對於保險人，產品的開發：',
+          options: ['(a) 是一種延續不斷的過程；', '(b) 對大型保險人來說是沒有必要的；', '(c) 對強制性的業務來說是沒有必要的；', '(d) 在敲定了保單的用字後便不再需要。'],
+          answer: 'A',
+          analysis: '保險產品開發是持續進行的過程，需要根據市場變化、監管要求、客戶需求不斷更新和優化，並非一次性工作。',
           difficulty: 1
         },
         {
           id: 'p1-ch4-2', type: 'single',
-          content: '核保（Underwriting）的主要目的是？',
-          options: ['A. 加快理赔速度', 'B. 评估风险、决定是否承保及保费高低', 'C. 推销更多产品', 'D. 降低保险公司成本'],
-          answer: 'B',
-          analysis: '核保是保险公司评估投保标的的风险程度，决定是否接受承保、以何种条件承保（标准体、次标准体或拒保）以及厘定适当保费的过程。',
+          content: '對於保險公司的運作來說，核保可解作：',
+          options: ['(a) 銷售活動；', '(b) 對任何未能出售的股票承擔責任；', '(c) 作為保險目的而進行的風險評估；', '(d) 保單和其他合約文件的實際簽署。'],
+          answer: 'C',
+          analysis: '核保（Underwriting）是保險公司評估風險、決定是否接受承保及以何種條件承保的過程，即作為保險目的而進行的風險評估。',
           difficulty: 1
         },
         {
           id: 'p1-ch4-3', type: 'single',
-          content: '保费计算的基础是？',
-          options: ['A. 投保人喜好', 'B. 保险标的的预期损失率', 'C. 市场竞争', 'D. 保险公司规模'],
-          answer: 'B',
-          analysis: '保费计算基于大数法则，参考保险标的的历史损失数据和预期损失率，加上附加费用和合理利润，形成保费水平。',
+          content: '以下哪些可能對人壽保險理賠造成一定的影響？\n(i) 還未清償的保單貸款。\n(ii) 與受益人有關的複雜事項。\n(iii) 保單轉讓給第三者的可能性。\n(iv) 對死者死亡的真確性或其身份存在不確定因素。',
+          options: ['(a) (i)及(ii)而已；', '(b) (ii)及(iii)而已；', '(c) (i)、(iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
+          answer: 'D',
+          analysis: '人壽保險理賠可能受多種因素影響：(i)未清償保單貸款會從保險金中扣除；(ii)受益人複雜事項影響給付對象；(iii)保單轉讓影響權益歸屬；(iv)死亡真確性是理賠前提。四者全部可能影響理賠。',
           difficulty: 2
         },
         {
-          id: 'p1-ch4-4', type: 'judge',
-          content: '现金价值（Cash Value）是投保人解除保单时可获得的退保价值。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '现金价值（Cancellation Value）是长期人身保险中，投保人按时缴纳保费并经过一定时期后，保单累积的解约退还金。现金价值通常低于已缴保费总额。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-5', type: 'single',
-          content: '理赔流程的第一步是？',
-          options: ['A. 支付赔款', 'B. 报案并提出索赔申请', 'C. 调查保险事故', 'D. 起诉第三方'],
-          answer: 'B',
-          analysis: '理赔流程第一步是出险后及时向保险公司报案并提出正式的索赔申请（Notification + Claim Application），这是启动理赔程序的前提。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-6', type: 'single',
-          content: '保险公司拒绝赔付的常见理由不包括？',
-          options: ['A. 未如实告知', 'B. 属于除外责任', 'C. 保费已按时缴纳', 'D. 损失不属于承保范围'],
-          answer: 'C',
-          analysis: '常见拒赔理由包括：违反如实告知义务、损失属于除外责任、不属于承保范围、保单已失效等。保费按时缴纳是保险公司应履行赔付义务的前提，不是拒赔理由。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-7', type: 'single',
-          content: '保单变更中，变更受益人需要？',
-          options: ['A. 保险公司同意', 'B. 被保险人同意', 'C. 只需投保人通知', 'D. 不允许变更'],
-          answer: 'B',
-          analysis: '受益人变更涉及被保险人的利益，通常需要被保险人同意（除非被保险人即是投保人），并书面通知保险公司完成批注手续。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch4-8', type: 'single',
-          content: '宽限期（Grace Period）一般是多少天？',
-          options: ['A. 10天', 'B. 30天', 'C. 60天', 'D. 90天'],
-          answer: 'B',
-          analysis: '宽限期（Grace Period）是指保费到期后，保险公司给予投保人补缴保费而不致保单立即失效的期限，通常为30天（长期寿险标准宽限期）。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-9', type: 'judge',
-          content: '退保（ lapsation）是指投保人中途解除保险合同的行为。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '退保（Lapsation）是指在保险合同有效期内，投保人申请解除合同的行为。长期险退保可获得现金价值；财险退保按短期费率计算退还保费。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-10', type: 'single',
-          content: '投保建议书（Illustration）的主要作用是？',
-          options: ['A. 作为正式合同', 'B. 说明保险产品特点、演示利益', 'C. 确定保费', 'D. 代替核保'],
-          answer: 'B',
-          analysis: '投保建议书（Illustration）是向潜在客户解释保险产品特点、演示保险利益、说明保费和保障范围的文件，帮助客户理解产品，非正式合同文件。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-11', type: 'single',
-          content: '保险公估行（Loss Adjuster）的作用是？',
-          options: ['A. 承保保险业务', 'B. 评估损失程度和金额', 'C. 销售保险产品', 'D. 制定保险费率'],
-          answer: 'B',
-          analysis: '保险公估行（Loss Adjuster/Assessor）是独立的专业机构，受保险公司或被保险人委托，对保险事故损失进行评估、勘察和确定损失金额。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch4-12', type: 'single',
-          content: '保费缴付方式一般不包括？',
-          options: ['A. 年缴', 'B. 半年缴', 'C. 按股票盈利缴付', 'D. 月缴'],
-          answer: 'C',
-          analysis: '保费缴付方式通常有年缴、半年缴、季缴、月缴等。按股票盈利缴付不是正规的保费缴付方式。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-13', type: 'judge',
-          content: '保险事故发生后，被保险人有义务采取合理措施减少损失。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '保险合同中通常有"损失减少义务"条款，要求被保险人在保险事故发生后采取合理措施减少损失，否则保险公司对扩大部分不承担赔偿责任。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-14', type: 'single',
-          content: '保单签发后，投保人一般有多少天可申请撤单？',
-          options: ['A. 7天', 'B. 14天', 'C. 21天', 'D. 30天'],
-          answer: 'B',
-          analysis: '香港保险业监管局规定，投保人收到保单后一般有14天（冷静期/Cooling-off Period）的考虑期，在此期间可申请撤单并获得全额退还保费。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch4-15', type: 'single',
-          content: '保险理赔中的"比例赔付"一般适用于？',
-          options: ['A. 足额保险', 'B. 不足额保险或超额保险', 'C. 定值保险', 'D. 人寿保险'],
-          answer: 'B',
-          analysis: '比例赔付（Pro-rata）通常适用于不足额保险（保额低于实际价值）或超额保险（保额超过实际价值）的情况，按保险金额与实际价值的比例计算赔付。',
+          id: 'p1-ch4-4', type: 'single',
+          content: '以下哪兩項不大可能是保險公司會計部的職責？\n(i) 替還未清償的賬單付款。\n(ii) 追收欠交的保費。\n(iii) 釐定各項風險是否可保。\n(iv) 安排推出新的保單產品。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)及(iii)而已；', '(c) (ii)及(iii)而已；', '(d) (iii)及(iv)而已。'],
+          answer: 'D',
+          analysis: '核保（釐定風險是否可保）和產品開發（安排推出新保單產品）是核保部門和產品開發部門的職責，不屬於會計部職責。(iii)和(iv)是正確答案。',
           difficulty: 2
         }
       ]
