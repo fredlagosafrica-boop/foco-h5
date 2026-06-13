@@ -446,7 +446,6 @@ function renderWrongPractice() {
     return;
   }
 
-  // 找到题目
   const allQuestions = FOCO_DATA.exams[0].chapters.flatMap(paper => paper.children.flatMap(ch => ch.questions));
   const q = allQuestions.find(q => q.id === qId);
   if (!q) { location.href = 'wrong.html'; return; }
@@ -454,9 +453,29 @@ function renderWrongPractice() {
   const info = bank[qId];
   const container = document.getElementById('app');
 
+  // 构建错题顺序列表（从 sessionStorage 读取，进入时设置一次）
+  const SESSION_KEY = 'wrong_session_ids';
+  let sessionIds = JSON.parse(sessionStorage.getItem(SESSION_KEY) || '[]');
+  if (sessionIds.length === 0 || !sessionIds.includes(qId)) {
+    sessionIds = Object.keys(bank);
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(sessionIds));
+  }
+
+  function getNextWrongId(currentId) {
+    const idx = sessionIds.indexOf(currentId);
+    if (idx === -1) return null;
+    // 过滤掉已经被移除的
+    const bank2 = getWrongBank();
+    for (let i = idx + 1; i < sessionIds.length; i++) {
+      if (bank2[sessionIds[i]]) return sessionIds[i];
+    }
+    return null;
+  }
+
   function render() {
-    const currentStreak = bank[q.id] ? bank[q.id].streak : 0;
+    const currentStreak = getWrongBank()[q.id] ? getWrongBank()[q.id].streak : 0;
     const isAnswered = getUrlParam('answered') === '1';
+    const nextId = getNextWrongId(q.id);
 
     container.innerHTML = `
       <div class="page">
@@ -499,7 +518,13 @@ function renderWrongPractice() {
         </div>
 
         <div class="btn-fixed">
-          <button class="btn btn-primary btn-block" onclick="location.href='wrong.html'">← 返回错题本</button>
+          <div class="btn-group">
+            <button class="btn btn-outline" ${currentStreak === 0 ? 'disabled style="opacity:0.4"' : ''} onclick="location.href='wrong.html'">← 错题本</button>
+            ${nextId
+              ? `<button class="btn btn-primary" onclick="location.href='wrong.html?practice=${nextId}'">下一题 →</button>`
+              : `<button class="btn btn-success" onclick="location.href='wrong.html'">🎉 完成！</button>`
+            }
+          </div>
         </div>
       </div>
     `;
@@ -520,11 +545,16 @@ function renderWrongPractice() {
         toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#26a269;color:#fff;padding:10px 20px;border-radius:20px;font-size:14px;z-index:999';
         toast.textContent = '🎉 连续答对3次，已移出错题本！';
         document.body.appendChild(toast);
-        setTimeout(() => location.href = 'wrong.html', 1500);
+        setTimeout(() => {
+          const nextId = getNextWrongId(qId);
+          if (nextId) {
+            location.href = 'wrong.html?practice=' + nextId;
+          } else {
+            sessionStorage.removeItem(SESSION_KEY);
+            location.href = 'wrong.html';
+          }
+        }, 1200);
       } else {
-        const url = new URL(location.href);
-        url.searchParams.set('answered', '1');
-        history.replaceState(null, '', url.toString());
         render();
       }
     } else {
