@@ -24,11 +24,57 @@ function storageGet(key, defaultVal) {
   } catch(e) { return defaultVal; }
 }
 
+// ==================== 错题本 ====================
+// 错题本结构：{ [questionId]: { wrongCount, streak, lastWrong } }
+// streak: 连续答对次数，答错时重置为0
+// wrongCount: 累计答错次数
+// 连续答对3次 → 移出错题本
+
+const WRONG_BANK_KEY = 'wrong_bank';
+
+function getWrongBank() {
+  return storageGet(WRONG_BANK_KEY, {});
+}
+
+function addToWrongBank(qId) {
+  const bank = getWrongBank();
+  if (!bank[qId]) bank[qId] = { wrongCount: 0, streak: 0 };
+  bank[qId].wrongCount++;
+  bank[qId].streak = 0;
+  bank[qId].lastWrong = Date.now();
+  storageSet(WRONG_BANK_KEY, bank);
+}
+
+function markCorrectInWrongBank(qId) {
+  const bank = getWrongBank();
+  if (!bank[qId]) return false; // 不在错题本，不处理
+  bank[qId].streak++;
+  storageSet(WRONG_BANK_KEY, bank);
+  if (bank[qId].streak >= 3) {
+    // 连续答对3次，移出错题本
+    delete bank[qId];
+    storageSet(WRONG_BANK_KEY, bank);
+    return 'mastered'; // 已掌握
+  }
+  return 'streak'; // 继续练习
+}
+
+function removeFromWrongBank(qId) {
+  const bank = getWrongBank();
+  delete bank[qId];
+  storageSet(WRONG_BANK_KEY, bank);
+}
+
+function getWrongBankCount() {
+  return Object.keys(getWrongBank()).length;
+}
+
 // ==================== 首页 ====================
 
 function renderHome() {
   const container = document.getElementById('app');
   const stats = getStats();
+  const wrongCount = getWrongBankCount();
 
   container.innerHTML = `
     <div class="page">
@@ -48,10 +94,22 @@ function renderHome() {
             <div class="label">正确率</div>
           </div>
           <div class="stat-card">
-            <div class="num">${stats.days}</div>
-            <div class="label">学习天数</div>
+            <div class="num" style="color:${wrongCount > 0 ? '#c01c28' : 'inherit'}">${wrongCount}</div>
+            <div class="label">错题待练</div>
           </div>
         </div>
+
+        ${wrongCount > 0 ? `
+          <div class="section-title">🔥 错题克星</div>
+          <div class="chapter-card" onclick="location.href='wrong.html'" style="border-left:4px solid #c01c28">
+            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">✖</div>
+            <div class="chapter-info">
+              <div class="name">错题再练习</div>
+              <div class="meta">${wrongCount}道错题 · 答对3次自动移除</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+        ` : ''}
 
         <div class="section-title">📝 IIQE 考试科目</div>
         <div class="exam-grid">
@@ -102,6 +160,7 @@ function renderPaper() {
 
   const container = document.getElementById('app');
   const progress = storageGet(`progress_${paper.id}`, {});
+  const wrongCount = getWrongBankCount();
 
   container.innerHTML = `
     <div class="page">
@@ -115,6 +174,17 @@ function renderPaper() {
           <h2>${paper.name}</h2>
           <p>${paper.subtitle} · ${paper.desc}</p>
         </div>
+
+        ${wrongCount > 0 && paper.id === 'paper1' ? `
+          <div class="chapter-card" onclick="location.href='wrong.html'" style="border-left:4px solid #c01c28;margin-bottom:12px">
+            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">✖</div>
+            <div class="chapter-info">
+              <div class="name">🔥 错题再练习（${wrongCount}道）</div>
+              <div class="meta">答对3次自动移除 · 集中攻克薄弱点</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+        ` : ''}
 
         <div class="section-title">📖 章节练习</div>
         ${paper.children.map((ch, i) => {
@@ -169,6 +239,9 @@ function renderPractice() {
   function render() {
     const q = questions[current];
     const typeMap = { single: '单选题', judge: '判断题', multiple: '多选题' };
+    const answered = Object.keys(answers).length;
+    const inWrongBank = getWrongBank()[q.id] !== undefined;
+    const streak = inWrongBank ? getWrongBank()[q.id].streak : 0;
 
     container.innerHTML = `
       <div class="page">
@@ -183,14 +256,28 @@ function renderPractice() {
             <span class="question-progress">${current + 1} / ${questions.length}</span>
           </div>
 
+          ${inWrongBank ? `
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px 12px;background:#fce8e6;border-radius:8px;font-size:12px;color:#c01c28">
+              <span>✖</span>
+              <span>此题为错题，连续答对 <strong>${streak}/3</strong> 次可移除</span>
+            </div>
+          ` : ''}
+
           <div class="question-card">
             <div class="question-content">${q.content}</div>
             <div class="question-options">
               ${q.options.map((opt, idx) => {
                 const key = String.fromCharCode(65 + idx);
                 const isSelected = answers[q.id] === key;
+                const isCorrect = key === q.answer;
+                const isAnswered = answers[q.id] !== undefined;
+                let cls = '';
+                if (isAnswered) {
+                  if (isCorrect) cls = 'correct';
+                  else if (isSelected) cls = 'wrong';
+                }
                 return `
-                  <div class="option-item ${isSelected ? 'selected' : ''}" onclick="selectOption('${q.id}','${key}')">
+                  <div class="option-item ${cls} ${isAnswered ? 'disabled' : ''}" onclick="${isAnswered ? '' : `selectOption('${q.id}','${key}')`}">
                     <div class="option-key">${key}</div>
                     <div class="option-text">${opt}</div>
                   </div>
@@ -226,7 +313,25 @@ function renderPractice() {
   window.selectOption = function(qId, key) {
     const q = questions[current];
     answers[qId] = key;
-    recordAnswer(qId, key === q.answer);
+    const isCorrect = key === q.answer;
+
+    if (isCorrect) {
+      const result = markCorrectInWrongBank(qId);
+      if (result === 'mastered') {
+        // 显示"已掌握"提示
+        setTimeout(() => {
+          const toast = document.createElement('div');
+          toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#26a269;color:#fff;padding:10px 20px;border-radius:20px;font-size:14px;z-index:999';
+          toast.textContent = '🎉 连续答对3次，已移出错题本！';
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 2000);
+        }, 300);
+      }
+    } else {
+      addToWrongBank(qId);
+    }
+
+    recordAnswer(qId, isCorrect);
     const url = new URL(location.href);
     url.searchParams.set('answers', JSON.stringify(answers));
     history.replaceState(null, '', url.toString());
@@ -254,6 +359,184 @@ function recordAnswer(qId, isCorrect) {
     storageSet('study_days', storageGet('study_days', 0) + 1);
     storageSet('last_study_date', today);
   }
+}
+
+// ==================== 错题本页 ====================
+
+function renderWrong() {
+  const bank = getWrongBank();
+  const bankEntries = Object.entries(bank);
+
+  const container = document.getElementById('app');
+
+  if (bankEntries.length === 0) {
+    container.innerHTML = `
+      <div class="page">
+        <div class="header">
+          <div class="header-back" onclick="location.href='index.html'">←</div>
+          <div class="header-title">错题克星</div>
+          <div style="width:32px"></div>
+        </div>
+        <div class="content">
+          <div class="empty-state">
+            <div class="icon">🎉</div>
+            <p>暂无错题，全部掌握！</p>
+            <button class="btn btn-primary mt-20" onclick="location.href='paper.html?exam=paper1'" style="display:inline-block">去练习</button>
+          </div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  // 构建题目列表（从 data.js 中查找）
+  const allQuestions = FOCO_DATA.exams[0].chapters.flatMap(paper => paper.children.flatMap(ch => ch.questions));
+  const wrongQuestions = bankEntries
+    .map(([qId, info]) => {
+      const q = allQuestions.find(q => q.id === qId);
+      return q ? { ...q, ...info } : null;
+    })
+    .filter(Boolean);
+
+  container.innerHTML = `
+    <div class="page">
+      <div class="header">
+        <div class="header-back" onclick="location.href='index.html'">←</div>
+        <div class="header-title">错题克星</div>
+        <div style="width:32px"></div>
+      </div>
+      <div class="content">
+        <div style="background:#fce8e6;border-radius:12px;padding:12px 16px;margin-bottom:16px;text-align:center">
+          <div style="font-size:13px;color:#c01c28">
+            <strong>${wrongQuestions.length}</strong> 道错题待攻克<br>
+            <span style="font-size:11px;color:#9ca3af">每题连续答对 <strong>3次</strong> 自动移除</span>
+          </div>
+        </div>
+
+        <div class="section-title">📋 错题列表</div>
+        ${wrongQuestions.map((q, i) => `
+          <div class="chapter-card" onclick="location.href='wrong.html?practice=${q.id}'">
+            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">${i+1}</div>
+            <div class="chapter-info">
+              <div class="name">${q.content.substring(0, 40)}${q.content.length > 40 ? '...' : ''}</div>
+              <div class="meta">
+                连续答对 <strong style="color:${q.streak >= 2 ? '#26a269' : '#c01c28'}">${q.streak}/3</strong> 次 ·
+                共答错 <strong>${q.wrongCount}</strong> 次
+              </div>
+              <div class="progress-bar" style="margin-top:6px">
+                <div class="progress-fill" style="width:${Math.round(q.streak/3*100)}%;background:#c01c28"></div>
+              </div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// ==================== 错题练习页 ====================
+
+function renderWrongPractice() {
+  const qId = getUrlParam('practice');
+  const bank = getWrongBank();
+
+  if (!qId || !bank[qId]) {
+    location.href = 'wrong.html';
+    return;
+  }
+
+  // 找到题目
+  const allQuestions = FOCO_DATA.exams[0].chapters.flatMap(paper => paper.children.flatMap(ch => ch.questions));
+  const q = allQuestions.find(q => q.id === qId);
+  if (!q) { location.href = 'wrong.html'; return; }
+
+  const info = bank[qId];
+  const container = document.getElementById('app');
+
+  function render() {
+    const currentStreak = bank[q.id] ? bank[q.id].streak : 0;
+    const isAnswered = getUrlParam('answered') === '1';
+
+    container.innerHTML = `
+      <div class="page">
+        <div class="header">
+          <div class="header-back" onclick="location.href='wrong.html'">←</div>
+          <div class="header-title">错题克星</div>
+          <div style="width:32px"></div>
+        </div>
+        <div class="content" style="padding-bottom:80px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px 12px;background:#fce8e6;border-radius:8px;font-size:12px;color:#c01c28">
+            <span>✖</span>
+            <span>连续答对 <strong>${currentStreak}/3</strong> 次可移除 · 共答错 ${info.wrongCount} 次</span>
+          </div>
+
+          <div class="question-card">
+            <div class="question-content">${q.content}</div>
+            <div class="question-options">
+              ${q.options.map((opt, idx) => {
+                const key = String.fromCharCode(65 + idx);
+                const isCorrect = key === q.answer;
+                return `
+                  <div class="option-item ${isAnswered ? (isCorrect ? 'correct' : '') : ''}" onclick="${isAnswered ? '' : `selectWrongOption('${q.id}','${key}')`}">
+                    <div class="option-key">${key}</div>
+                    <div class="option-text">${opt}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          ${isAnswered ? `
+            <div class="analysis-card">
+              <div class="analysis-title">📝 答案解析</div>
+              <div class="analysis-text">
+                <strong>正确答案：${q.answer}</strong><br><br>
+                ${q.analysis}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="btn-fixed">
+          <button class="btn btn-primary btn-block" onclick="location.href='wrong.html'">← 返回错题本</button>
+        </div>
+      </div>
+    `;
+  }
+
+  window.selectWrongOption = function(qId, key) {
+    const q = allQuestions.find(q => q.id === qId);
+    const isCorrect = key === q.answer;
+
+    if (isCorrect) {
+      const result = markCorrectInWrongBank(qId);
+      const url = new URL(location.href);
+      url.searchParams.set('answered', '1');
+      history.replaceState(null, '', url.toString());
+
+      if (result === 'mastered') {
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#26a269;color:#fff;padding:10px 20px;border-radius:20px;font-size:14px;z-index:999';
+        toast.textContent = '🎉 连续答对3次，已移出错题本！';
+        document.body.appendChild(toast);
+        setTimeout(() => location.href = 'wrong.html', 1500);
+      } else {
+        const url = new URL(location.href);
+        url.searchParams.set('answered', '1');
+        history.replaceState(null, '', url.toString());
+        render();
+      }
+    } else {
+      addToWrongBank(qId);
+      const url = new URL(location.href);
+      url.searchParams.set('answered', '1');
+      history.replaceState(null, '', url.toString());
+      render();
+    }
+  };
+
+  render();
 }
 
 // ==================== 模拟考试 ====================
@@ -345,8 +628,15 @@ function renderMockTest() {
               ${q.options.map((opt, idx) => {
                 const key = String.fromCharCode(65 + idx);
                 const isSelected = answers[q.id] === key;
+                const isAnswered = answers[q.id] !== undefined;
+                const isCorrect = key === q.answer;
+                let cls = '';
+                if (isAnswered) {
+                  if (isCorrect) cls = 'correct';
+                  else if (isSelected) cls = 'wrong';
+                }
                 return `
-                  <div class="option-item ${isSelected ? 'selected' : ''}" onclick="selectMockOption('${q.id}','${key}')">
+                  <div class="option-item ${cls} ${isAnswered ? 'disabled' : ''}" onclick="${isAnswered ? '' : `selectMockOption('${q.id}','${key}')`}">
                     <div class="option-key">${key}</div>
                     <div class="option-text">${opt}</div>
                   </div>
@@ -382,7 +672,15 @@ function renderMockTest() {
   }
 
   window.selectMockOption = function(qId, key) {
+    const q = questions.find(q => q.id === qId);
     answers[qId] = key;
+
+    if (key !== q.answer) {
+      addToWrongBank(qId);
+    } else {
+      markCorrectInWrongBank(qId);
+    }
+
     mock.answers = answers;
     storageSet(`mock_${paperId}`, mock);
     render();
@@ -456,10 +754,7 @@ function renderMockResult() {
   }
 
   const { total, correct, pct } = result;
-  const passLine = paper.id === 'paper1' ? Math.round(75 * 0.707) : Math.round(50 * 0.70);
-  const passed = paper.id === 'paper1'
-    ? (correct >= 53)
-    : (correct >= 35);
+  const passed = paper.id === 'paper1' ? (correct >= 53) : (correct >= 35);
   const color = pct >= 80 ? '#26a269' : pct >= 70 ? '#e5a50a' : '#c01c28';
 
   container.innerHTML = `
@@ -474,7 +769,7 @@ function renderMockResult() {
           <div class="result-score" style="color:${color}">${pct}%</div>
           <div class="result-label">${passed ? '🎉 合格！' : '💪 继续加油！'}</div>
           <div style="font-size:13px;color:var(--text-secondary);margin-bottom:16px">
-            合格线：${passLine}题（70%）· 你的成绩：${correct}题
+            合格线：${paper.id === 'paper1' ? '53题（70%）' : '35题（70%）'} · 你的成绩：${correct}题
           </div>
           <div class="result-stats">
             <div class="result-stat">
@@ -510,6 +805,8 @@ function init() {
     case 'mock': renderMock(); break;
     case 'mock-test': renderMockTest(); break;
     case 'mock-result': renderMockResult(); break;
+    case 'wrong': renderWrong(); break;
+    case 'wrong-practice': renderWrongPractice(); break;
   }
 }
 
