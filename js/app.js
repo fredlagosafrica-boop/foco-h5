@@ -140,6 +140,26 @@ function renderHome() {
           ⑥ 保险业的规管架构 &nbsp;⑦ 职业道德及其他有关问题
         </div>
       </div>
+
+        <div class="tab-bar">
+          <div class="tab-item active" onclick="location.href='index.html'">
+            <div class="icon">🏠</div>
+            <div>首页</div>
+          </div>
+          <div class="tab-item" onclick="location.href='paper.html?exam=paper1'">
+            <div class="icon">📚</div>
+            <div>题库</div>
+          </div>
+          <div class="tab-item" onclick="location.href='wrong.html'">
+            <div class="icon">✖</div>
+            <div>错题</div>
+          </div>
+          <div class="tab-item" onclick="location.href='me.html'">
+            <div class="icon">👤</div>
+            <div>我的</div>
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
@@ -211,6 +231,16 @@ function renderPaper() {
           <div class="chapter-info">
             <div class="name">${paper.name} 综合模拟</div>
             <div class="meta">${paper.children[0] ? paper.children.reduce((a,c)=>a+c.questions.length,0) : 0}题随机抽取 · 计时考试</div>
+          </div>
+          <div class="chapter-arrow">›</div>
+        </div>
+
+        <div class="section-title mt-20">🎲 随机刷题</div>
+        <div class="chapter-card" onclick="location.href='random.html?paper=${paper.id}'">
+          <div class="chapter-icon" style="background:#e8f0fe;color:#1a5fb4">🎲</div>
+          <div class="chapter-info">
+            <div class="name">章节随机练习</div>
+            <div class="meta">按章节随机抽取 · 强化薄弱点</div>
           </div>
           <div class="chapter-arrow">›</div>
         </div>
@@ -555,6 +585,165 @@ function renderWrongPractice() {
   render();
 }
 
+// ==================== 随机刷题 ====================
+
+function renderRandom() {
+  const paperId = getUrlParam('paper') || 'paper1';
+  const paper = FOCO_DATA.exams[0].chapters.find(p => p.id === paperId);
+  if (!paper) { location.href = 'index.html'; return; }
+
+  const container = document.getElementById('app');
+  container.innerHTML = `
+    <div class="page">
+      <div class="header">
+        <div class="header-back" onclick="location.href='paper.html?exam=${paperId}'">←</div>
+        <div class="header-title">随机刷题</div>
+        <div style="width:32px"></div>
+      </div>
+      <div class="content">
+        <div class="banner" style="background:linear-gradient(135deg,${paper.color} 0%,${paper.color}cc 100%)">
+          <h2>🎲 ${paper.name}</h2>
+          <p>${paper.subtitle} · 随机抽取 · 强化薄弱点</p>
+        </div>
+
+        <div class="section-title">📖 选择章节</div>
+        ${paper.children.map((ch, i) => `
+          <div class="chapter-card" onclick="startRandom('${paperId}','${ch.id}')">
+            <div class="chapter-icon" style="background:${paper.color}15;color:${paper.color}">${i+1}</div>
+            <div class="chapter-info">
+              <div class="name">${ch.name}</div>
+              <div class="meta">${ch.questions.length}道题 · 随机排列</div>
+            </div>
+            <div class="chapter-arrow">🎲</div>
+          </div>
+        `).join('')}
+
+        <div class="section-title mt-20">🎯 全章混合</div>
+        <div class="chapter-card" onclick="startRandom('${paperId}','all')">
+          <div class="chapter-icon" style="background:#9141ac15;color:#9141ac">🔥</div>
+          <div class="chapter-info">
+            <div class="name">全章混合练习</div>
+            <div class="meta">${paper.children.reduce((a,c)=>a+c.questions.length,0)}道题随机抽取</div>
+          </div>
+          <div class="chapter-arrow">🎲</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+window.startRandom = function(paperId, chapterId) {
+  const paper = FOCO_DATA.exams[0].chapters.find(p => p.id === paperId);
+  const questions = chapterId === 'all'
+    ? paper.children.flatMap(ch => ch.questions)
+    : paper.children.find(ch => ch.id === chapterId).questions;
+  const shuffled = questions.sort(() => Math.random() - 0.5);
+  storageSet('random_practice', { shuffled, paperId, chapterId, answers: {}, index: 0 });
+  location.href = 'random.html?mode=practice';
+};
+
+function renderRandomPractice() {
+  const mode = getUrlParam('mode');
+  const practice = storageGet('random_practice', null);
+  if (!practice) { location.href = 'index.html'; return; }
+  const { shuffled, paperId, chapterId, answers, index: startIndex } = practice;
+
+  if (mode === 'menu') {
+    renderRandom();
+    return;
+  }
+
+  let index = parseInt(getUrlParam('q') || '0');
+  const q = shuffled[index];
+  const container = document.getElementById('app');
+
+  function render() {
+    const typeMap = { single: '单选题', judge: '判断题', multiple: '多选题' };
+
+    container.innerHTML = `
+      <div class="page">
+        <div class="header">
+          <div class="header-back" onclick="location.href='random.html?mode=menu&paper=${paperId}'">←</div>
+          <div class="header-title">随机刷题</div>
+          <div class="question-progress">${index + 1} / ${shuffled.length}</div>
+        </div>
+        <div class="content" style="padding-bottom:80px">
+          <div class="question-header">
+            <span class="question-type-tag">${typeMap[q.type] || '单选题'}</span>
+            <span class="question-progress">${index + 1} / ${shuffled.length}</span>
+          </div>
+
+          <div class="question-card">
+            <div class="question-content">${q.content}</div>
+            <div class="question-options">
+              ${q.options.map((opt, idx) => {
+                const key = String.fromCharCode(65 + idx);
+                const isSelected = answers[q.id] === key;
+                const isAnswered = answers[q.id] !== undefined;
+                const isCorrect = key === q.answer;
+                let cls = '';
+                if (isAnswered) {
+                  if (isCorrect) cls = 'correct';
+                  else if (isSelected) cls = 'wrong';
+                }
+                return `
+                  <div class="option-item ${cls} ${isAnswered ? 'disabled' : ''}" onclick="${isAnswered ? '' : `selectRandomOption('${q.id}','${key}')`}">
+                    <div class="option-key">${key}</div>
+                    <div class="option-text">${opt}</div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          </div>
+
+          ${answers[q.id] !== undefined ? `
+            <div class="analysis-card">
+              <div class="analysis-title">📝 答案解析</div>
+              <div class="analysis-text">
+                <strong>正确答案：${q.answer}</strong><br><br>
+                ${q.analysis}
+              </div>
+            </div>
+          ` : ''}
+        </div>
+
+        <div class="btn-fixed">
+          <div class="btn-group">
+            <button class="btn btn-outline" ${index === 0 ? 'disabled style="opacity:0.4"' : ''} onclick="goRandomQ(${index - 1})">← 上一题</button>
+            ${index < shuffled.length - 1
+              ? `<button class="btn btn-primary" onclick="goRandomQ(${index + 1})">下一题 →</button>`
+              : `<button class="btn btn-success" onclick="location.href='random.html?mode=menu&paper=${paperId}'">完成练习 ✓</button>`
+            }
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  window.selectRandomOption = function(qId, key) {
+    const q = shuffled[index];
+    answers[qId] = key;
+    practice.answers = answers;
+    practice.index = index;
+    storageSet('random_practice', practice);
+
+    if (key !== q.answer) {
+      addToWrongBank(qId);
+    } else {
+      markCorrectInWrongBank(qId);
+    }
+    render();
+  };
+
+  window.goRandomQ = function(idx) {
+    practice.index = idx;
+    storageSet('random_practice', practice);
+    location.href = 'random.html?mode=practice&q=' + idx;
+  };
+
+  render();
+}
+
 // ==================== 模拟考试 ====================
 
 function renderMock() {
@@ -810,6 +999,100 @@ function renderMockResult() {
   `;
 }
 
+// ==================== 我的页面 ====================
+
+function renderMe() {
+  const container = document.getElementById('app');
+  const stats = getStats();
+  const wrongCount = getWrongBankCount();
+  const favCount = Object.keys(storageGet('favorites', {})).length;
+
+  container.innerHTML = `
+    <div class="page">
+      <div class="content">
+        <div style="text-align:center;padding:24px 0">
+          <div style="width:72px;height:72px;background:var(--primary-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:28px">👤</div>
+          <div style="font-size:16px;font-weight:600;color:var(--text)">FOCO 备考</div>
+          <div style="font-size:12px;color:var(--text-secondary);margin-top:4px">保险从业资格考试</div>
+        </div>
+
+        <div class="stats-row" style="margin-bottom:20px">
+          <div class="stat-card">
+            <div class="num">${stats.total}</div>
+            <div class="label">累计做题</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">${stats.accuracy}%</div>
+            <div class="label">正确率</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">${stats.days}</div>
+            <div class="label">学习天数</div>
+          </div>
+        </div>
+
+        <div class="section-title">📚 学习记录</div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
+          <div class="chapter-card" onclick="location.href='wrong.html'" style="border-radius:0;border-bottom:1px solid var(--border)">
+            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">✖</div>
+            <div class="chapter-info">
+              <div class="name">错题克星</div>
+              <div class="meta">${wrongCount}道错题 · 答对3次移除</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+          <div class="chapter-card" onclick="location.href='fav.html'" style="border-radius:0;border-bottom:1px solid var(--border)">
+            <div class="chapter-icon" style="background:#fce8e6;color:#e5a50a">★</div>
+            <div class="chapter-info">
+              <div class="name">我的收藏</div>
+              <div class="meta">${favCount}道收藏题目</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+          <div class="chapter-card" onclick="location.href='history.html'" style="border-radius:0">
+            <div class="chapter-icon" style="background:#e8f0fe;color:#1a5fb4">📖</div>
+            <div class="chapter-info">
+              <div class="name">练习记录</div>
+              <div class="meta">查看历史练习</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+        </div>
+
+        <div class="section-title mt-20">⚙️ 设置</div>
+        <div style="background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)">
+          <div class="chapter-card" onclick="confirmClearData()" style="border-radius:0;border-bottom:1px solid var(--border)">
+            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">🗑</div>
+            <div class="chapter-info">
+              <div class="name">清除学习数据</div>
+              <div class="meta">重置所有进度和记录</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+          <div class="chapter-card" onclick="location.href='about.html'" style="border-radius:0">
+            <div class="chapter-icon" style="background:#e8f0fe;color:#1a5fb4">ℹ️</div>
+            <div class="chapter-info">
+              <div class="name">关于我们</div>
+              <div class="meta">版本信息</div>
+            </div>
+            <div class="chapter-arrow">›</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+window.confirmClearData = function() {
+  if (confirm('确定清除所有学习数据？此操作不可恢复。')) {
+    const keys = ['total_answered', 'total_correct', 'study_days', 'last_study_date', 'progress_paper1', 'progress_paper3', 'wrong_bank', 'favorites'];
+    keys.forEach(k => localStorage.removeItem('foco_' + k));
+    alert('已清除所有学习数据');
+    location.reload();
+  }
+};
+
+
 // ==================== 路由分发 ====================
 
 function init() {
@@ -823,6 +1106,9 @@ function init() {
     case 'mock-result': renderMockResult(); break;
     case 'wrong': renderWrong(); break;
     case 'wrong-practice': renderWrongPractice(); break;
+    case 'random': renderRandom(); break;
+    case 'random-practice': renderRandomPractice(); break;
+    case 'me': renderMe(); break;
   }
 }
 
