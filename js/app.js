@@ -413,23 +413,9 @@ function renderWrong() {
           </div>
         </div>
 
-        <div class="section-title">📋 错题列表</div>
-        ${wrongQuestions.map((q, i) => `
-          <div class="chapter-card" onclick="location.href='wrong.html?practice=${q.id}'">
-            <div class="chapter-icon" style="background:#fce8e6;color:#c01c28">${i+1}</div>
-            <div class="chapter-info">
-              <div class="name">第 ${i+1} 题</div>
-              <div class="meta">
-                连续答对 <strong style="color:${q.streak >= 2 ? '#26a269' : '#c01c28'}">${q.streak}/3</strong> 次 ·
-                共答错 <strong>${q.wrongCount}</strong> 次
-              </div>
-              <div class="progress-bar" style="margin-top:6px">
-                <div class="progress-fill" style="width:${Math.round(q.streak/3*100)}%;background:#c01c28"></div>
-              </div>
-            </div>
-            <div class="chapter-arrow">›</div>
-          </div>
-        `).join('')}
+        <button class="btn btn-primary btn-block mt-20" onclick="location.href='wrong.html?practice=${wrongQuestions[0].id}'">
+          🔥 开始练习（${wrongQuestions.length}道错题）
+        </button>
       </div>
     </div>
   `;
