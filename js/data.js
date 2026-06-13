@@ -30,94 +30,45 @@ const PAPER1 = {
   chapters: [
     {
       id: 'p1-ch1',
-      name: '风险及保险',
+      name: '風險及保險',
       weight: '15%',
       targetQuestions: 12,
       questions: [
         {
           id: 'p1-ch1-1', type: 'single',
-          content: '风险的定义为？',
-          options: ['A. 任何可能发生的事件', 'B. 潜在损失的不确定性', 'C. 必然发生的损失', 'D. 仅指自然灾害'],
-          answer: 'B',
-          analysis: '风险是指在特定情况下，某一结果的不确定性，特别是潜在损失发生的不确定性。',
+          content: '風險可以描述為潛在損失的不確定性。這個潛在損失可以是在：',
+          options: ['(a) 身體上的；', '(b) 財務上的；', '(c) 情緒上的；', '(d) 上述所有各項。'],
+          answer: 'D',
+          analysis: '風險的潛在損失可以在身體上、財務上及情緒上等多個面向發生，保險保障的就是這些不同類型的潛在損失。',
           difficulty: 1
         },
         {
           id: 'p1-ch1-2', type: 'single',
-          content: '纯风险与投机风险的主要区别是？',
-          options: ['A. 纯风险可以保险，投机风险不可以', 'B. 两者都可以保险', 'C. 投机风险可能带来收益，纯风险只会造成损失', 'D. 纯风险发生概率更高'],
-          answer: 'C',
-          analysis: '纯风险（Pure Risk）只会造成损失或无损失，不会带来收益；投机风险（Speculative Risk）则可能同时带来收益或损失。保险主要承保纯风险。',
+          content: '祇有損失的可能而無收益的機會的風險稱為：',
+          options: ['(a) 純粹風險；', '(b) 特定風險；', '(c) 投機風險；', '(d) 基本風險。'],
+          answer: 'A',
+          analysis: '純粹風險（Pure Risk）指祇有損失機會而無收益機會的風險，如火災、意外等。投機風險則同時存在損失和收益的可能性。',
           difficulty: 1
         },
         {
           id: 'p1-ch1-3', type: 'single',
-          content: '以下哪种不属于风险管理的方法？',
-          options: ['A. 风险规避', 'B. 风险控制', 'C. 风险投机', 'D. 风险转移'],
-          answer: 'C',
-          analysis: '风险管理的基本方法包括：风险规避（Avoidance）、风险控制（Control）、风险转移（Transfer）和风险自留（Retention）。"风险投机"不是正规风险管理方法。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch1-4', type: 'judge',
-          content: '可保利益原则要求投保人对保险标的必须具有法律上承认的利益。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '可保利益（Insurable Interest）是保险的基本原则之一，投保人必须对保险标的具有法律上承认的利益，否则保险合同无效。',
-          difficulty: 1
-        },
-        {
-          id: 'p1-ch1-5', type: 'single',
-          content: '最大诚信原则（Utmost Good Faith）要求？',
-          options: ['A. 保险公司必须完全告知所有信息', 'B. 投保人必须如实告知重要事实', 'C. 双方无需披露任何信息', 'D. 仅在理赔时适用'],
+          content: '以下關於風險的敍述中哪一個是正確的？\n(i) 所有風險在商業上都可保。\n(ii) 並非所有風險在商業上都可保。\n(iii) 應付風險的唯一方法就是保險。\n(iv) 保險人談及「風險」時可以有很多不同的意思。',
+          options: ['(a) (i)及(iii)而已；', '(b) (ii)及(iv)而已；', '(c) (i)及(iv)而已；', '(d) (i)、(iii)及(iv)而已。'],
           answer: 'B',
-          analysis: '最大诚信原则要求投保人/被保险人在投保时如实告知所有影响保险公司承保决定的重要事实（Material Facts）。违反此原则可导致合同无效或拒赔。',
+          analysis: '並非所有風險在商業上都是可保的（有些風險不具備可保條件）；保險人談及的「風險」有多種含義，可能是純粹風險、投機風險、或指保險標的本身。(ii)和(iv)是正確的。',
           difficulty: 2
         },
         {
-          id: 'p1-ch1-6', type: 'single',
-          content: '近因原则（Principle of Proximate Cause）在保险中的含义是？',
-          options: ['A. 最近发生的原因', 'B. 直接导致损失的最主要、最有效的原因', 'C. 时间上最后发生的原因', 'D. 所有原因的平均'],
-          answer: 'B',
-          analysis: '近因是指造成损失的最主要、最有效的原因（the dominant and efficient cause）。保险公司只对近因造成的损失承担赔偿责任。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch1-7', type: 'single',
-          content: '代位求偿权（Subrogation）是指？',
-          options: ['A. 投保人有权代位保险公司进行求偿', 'B. 保险公司赔付后取得投保人对第三方的求偿权', 'C. 投保人可代位其他投保人', 'D. 保险公司放弃求偿权'],
-          answer: 'B',
-          analysis: '代位求偿权指保险公司在赔付被保险人的损失后，依法取得被保险人对第三方（责任人）的求偿权利。这避免被保险人双重获利。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch1-8', type: 'single',
-          content: '保险分类中，"长期保险"与"一般保险"的根本区别是？',
-          options: ['A. 保障期限长短', 'B. 保费高低', 'C. 承保风险类型', 'D. A和C'],
+          id: 'p1-ch1-4', type: 'single',
+          content: '以下哪項可視為保險為香港帶來的次要或輔助性的好處？\n(i) 作為儲蓄途徑。\n(ii) 提供就業。\n(iii) 鼓勵經濟發展。\n(iv) 降低發生意外／損失的次數。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)、(ii)及(iii)而已；', '(c) (iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
           answer: 'D',
-          analysis: '长期保险（Long-Term Insurance）通常指保障期限超过一年、以人死亡或生存为保险事故的保险，如寿险、年金；一般保险（General Insurance）主要承保财产损失、责任风险等短期风险。两者在保障期限和承保风险类型上均有区别。',
+          analysis: '保險為香港帶來的好處包括：主要好處（提供經濟保障）和次要好處：(i)作為儲蓄途徑、(ii)提供就業、(iii)鼓勵經濟發展、(iv)降低意外/損失次數，全部四項都是正確的。',
           difficulty: 2
-        },
-        {
-          id: 'p1-ch1-9', type: 'judge',
-          content: '分摊原则（Contribution）允许保险公司在重复保险情况下按比例分摊赔偿。',
-          options: ['正确', '错误'],
-          answer: '正确',
-          analysis: '分摊原则适用于重复保险：当同一标的向多家保险公司投保时，各保险公司按比例分摊赔偿金额，被保险人不能获得超过实际损失的赔偿。',
-          difficulty: 2
-        },
-        {
-          id: 'p1-ch1-10', type: 'single',
-          content: '以下哪种风险属于可保风险？',
-          options: ['A. 赌博输钱', 'B. 投机股票失利', 'C. 火灾导致财产损失', 'D. 商业投资失败'],
-          answer: 'C',
-          analysis: '可保风险需满足：纯粹性（只造成损失）、偶然性、可测定性、可计算性等条件。火灾属于纯粹风险，符合可保风险条件。赌博和投机股票属于投机风险，通常不可保。',
-          difficulty: 1
         }
       ]
     },
     {
-      id: 'p1-ch2',
       name: '法律原则',
       weight: '15%',
       targetQuestions: 12,
@@ -701,7 +652,7 @@ const PAPER3 = {
   chapters: [
     {
       id: 'p3-ch1',
-      name: '人寿保险简介',
+      name: '人壽保險簡介',
       weight: '10%',
       targetQuestions: 5,
       questions: [
@@ -749,7 +700,7 @@ const PAPER3 = {
     },
     {
       id: 'p3-ch2',
-      name: '人寿保险及年金种类',
+      name: '人壽保險及年金種類',
       weight: '20%',
       targetQuestions: 10,
       questions: [
@@ -837,7 +788,7 @@ const PAPER3 = {
     },
     {
       id: 'p3-ch3',
-      name: '保险利益附约及其他产品',
+      name: '保險利益附約及其他產品',
       weight: '24%',
       targetQuestions: 12,
       questions: [
@@ -941,7 +892,7 @@ const PAPER3 = {
     },
     {
       id: 'p3-ch4',
-      name: '阐释人寿保险单',
+      name: '闡釋人壽保險單',
       weight: '24%',
       targetQuestions: 12,
       questions: [
@@ -1045,7 +996,7 @@ const PAPER3 = {
     },
     {
       id: 'p3-ch5',
-      name: '人寿保险程序',
+      name: '人壽保險程序',
       weight: '22%',
       targetQuestions: 11,
       questions: [
@@ -1169,4 +1120,38 @@ FOCO_DATA.exams[0].chapters = [
 // 导出
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = FOCO_DATA;
+      questions: [
+        {
+          id: 'p1-ch1-1', type: 'single',
+          content: '風險可以描述為潛在損失的不確定性。這個潛在損失可以是在：',
+          options: ['(a) 身體上的；', '(b) 財務上的；', '(c) 情緒上的；', '(d) 上述所有各項。'],
+          answer: 'D',
+          analysis: '風險的潛在損失可以在身體上、財務上及情緒上等多個面向發生，保險保障的就是這些不同類型的潛在損失。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch1-2', type: 'single',
+          content: '祇有損失的可能而無收益的機會的風險稱為：',
+          options: ['(a) 純粹風險；', '(b) 特定風險；', '(c) 投機風險；', '(d) 基本風險。'],
+          answer: 'A',
+          analysis: '純粹風險（Pure Risk）指祇有損失機會而無收益機會的風險，如火災、意外等。投機風險則同時存在損失和收益的可能性。',
+          difficulty: 1
+        },
+        {
+          id: 'p1-ch1-3', type: 'single',
+          content: '以下關於風險的敍述中哪一個是正確的？\n(i) 所有風險在商業上都可保。\n(ii) 並非所有風險在商業上都可保。\n(iii) 應付風險的唯一方法就是保險。\n(iv) 保險人談及「風險」時可以有很多不同的意思。',
+          options: ['(a) (i)及(iii)而已；', '(b) (ii)及(iv)而已；', '(c) (i)及(iv)而已；', '(d) (i)、(iii)及(iv)而已。'],
+          answer: 'B',
+          analysis: '並非所有風險在商業上都是可保的（有些風險不具備可保條件）；保險人談及的「風險」有多種含義，可能是純粹風險、投機風險、或指保險標的本身。(ii)和(iv)是正確的。',
+          difficulty: 2
+        },
+        {
+          id: 'p1-ch1-4', type: 'single',
+          content: '以下哪項可視為保險為香港帶來的次要或輔助性的好處？\n(i) 作為儲蓄途徑。\n(ii) 提供就業。\n(iii) 鼓勵經濟發展。\n(iv) 降低發生意外／損失的次數。',
+          options: ['(a) (i)及(ii)而已；', '(b) (i)、(ii)及(iii)而已；', '(c) (iii)及(iv)而已；', '(d) (i)、(ii)、(iii)及(iv)。'],
+          answer: 'D',
+          analysis: '保險為香港帶來的好處包括：主要好處（提供經濟保障）和次要好處：(i)作為儲蓄途徑、(ii)提供就業、(iii)鼓勵經濟發展、(iv)降低意外/損失次數，全部四項都是正確的。',
+          difficulty: 2
+        }
+      ]
 }
